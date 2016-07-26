@@ -45797,7 +45797,7 @@ var AuthorActions = {
 
 module.exports = AuthorActions;
 
-},{"../api/authorApi":363,"../constants/actionTypes":375,"../dispatcher/appDispatcher":376}],363:[function(require,module,exports){
+},{"../api/authorApi":363,"../constants/actionTypes":378,"../dispatcher/appDispatcher":379}],363:[function(require,module,exports){
 "use strict";
 
 //This file is mocking a web API by hitting hard coded data.
@@ -45872,6 +45872,39 @@ module.exports = {
 };
 
 },{}],365:[function(require,module,exports){
+module.exports = {
+	teamData:
+	[
+		{
+			id: 1,
+			firstName: 'Gary',
+			surname: 'Chadwick',
+			teamName: 'Is there a loo on Mont Ventoux?',
+			ranking: '1',
+			cost: '100',
+			location: 'United Kingdom',
+			riderData: [
+				{
+					firstName: 'Chris',
+					surname: 'Froome',
+					team: 'Sky',
+					cost: '20',
+					stageScore: '678',
+					gcScore: '900',
+					pcScore: '20',
+					komScore: '90',
+					sprintScore: '6',
+					sumScore: '29',
+					bkyScore: '8',
+					assScore: '11',
+					total: '1762'
+				}
+			]
+		}
+	]
+};
+
+},{}],366:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -45900,7 +45933,7 @@ var About = React.createClass({displayName: "About",
 
 module.exports = About;
 
-},{"react":360}],366:[function(require,module,exports){
+},{"react":360}],367:[function(require,module,exports){
 /*eslint-disable strict */
 
 var React = require('react');
@@ -45923,7 +45956,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":371,"jquery":162,"react":360,"react-router":190}],367:[function(require,module,exports){
+},{"./common/header":372,"jquery":162,"react":360,"react-router":190}],368:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -45963,7 +45996,7 @@ var AuthorForm = React.createClass({displayName: "AuthorForm",
 
 module.exports = AuthorForm;
 
-},{"../common/textInput":372,"react":360}],368:[function(require,module,exports){
+},{"../common/textInput":373,"react":360}],369:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46004,7 +46037,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
 
 module.exports = AuthorList;
 
-},{"react":360,"react-router":190}],369:[function(require,module,exports){
+},{"react":360,"react-router":190}],370:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46035,7 +46068,7 @@ var AuthorPage = React.createClass({displayName: "AuthorPage",
 
 module.exports = AuthorPage;
 
-},{"../../actions/authorActions":362,"../../stores/authorStore":379,"./authorList":368,"react":360,"react-router":190}],370:[function(require,module,exports){
+},{"../../actions/authorActions":362,"../../stores/authorStore":382,"./authorList":369,"react":360,"react-router":190}],371:[function(require,module,exports){
  "use strict";
 
  var React = require('React');
@@ -46127,7 +46160,7 @@ module.exports = AuthorPage;
 
  module.exports = ManageAuthorPage;
 
-},{"../../actions/authorActions":362,"../../stores/authorStore":379,"./authorForm":367,"React":155,"react-router":190,"toastr":361}],371:[function(require,module,exports){
+},{"../../actions/authorActions":362,"../../stores/authorStore":382,"./authorForm":368,"React":155,"react-router":190,"toastr":361}],372:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46145,8 +46178,9 @@ var Header = React.createClass({displayName: "Header",
 					React.createElement("ul", {className: "nav navbar-nav"}, 
 						React.createElement("li", null, React.createElement(Link, {to: "app"}, "Home")), 
 						React.createElement("li", null, React.createElement(Link, {to: "authors"}, "Authors")), 
-						React.createElement("li", null, React.createElement(Link, {to: "about"}, "About"))
-
+						React.createElement("li", null, React.createElement(Link, {to: "about"}, "About")), 
+						React.createElement("li", null, React.createElement(Link, {to: "overallTeam"}, "Overall Team")), 
+						React.createElement("li", null, React.createElement(Link, {to: "teamBreakdown"}, "Team Breakdown"))
 					)
 				)
 			)
@@ -46156,7 +46190,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header; 
 
-},{"react":360,"react-router":190}],372:[function(require,module,exports){
+},{"react":360,"react-router":190}],373:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46198,7 +46232,7 @@ propTypes: {
 
 module.exports = Input;
 
-},{"react":360}],373:[function(require,module,exports){
+},{"react":360}],374:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46219,7 +46253,7 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"react":360,"react-router":190}],374:[function(require,module,exports){
+},{"react":360,"react-router":190}],375:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46240,7 +46274,55 @@ var notFoundPage = React.createClass({displayName: "notFoundPage",
 
 module.exports = notFoundPage;
 
-},{"react":360,"react-router":190}],375:[function(require,module,exports){
+},{"react":360,"react-router":190}],376:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var TeamStore = require('../../stores/teamStore');
+
+var OverallTeamPage = React.createClass({displayName: "OverallTeamPage",
+	getInitialState: function() {
+		return {
+			team: TeamStore.getTeamById(1)
+		};
+	},
+
+	render: function() {
+		var team = this.state.team;
+
+		return (
+			React.createElement("div", null, 
+				React.createElement("h1", null, "This is the Overall Team Page"), 
+				React.createElement("h2", null, this.state.team.teamName)
+			)
+			)
+	}
+});
+
+module.exports = OverallTeamPage;
+
+},{"../../stores/teamStore":383,"react":360}],377:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var TeamBreakdownPage = React.createClass({displayName: "TeamBreakdownPage",
+	getInitialState: function() {
+		return null;
+	},
+
+	render: function() {
+		return (
+			React.createElement("div", null, 
+				React.createElement("h1", null, "This is the Team Breakdown Page")
+			)
+			)
+	}
+});
+
+module.exports = TeamBreakdownPage;
+
+},{"react":360}],378:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require('react/lib/keyMirror');
@@ -46249,11 +46331,11 @@ module.exports = keyMirror({
 	CREATE_AUTHOR: null
 });
 
-},{"react/lib/keyMirror":345}],376:[function(require,module,exports){
+},{"react/lib/keyMirror":345}],379:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 module.exports = new Dispatcher();
 
-},{"flux":159}],377:[function(require,module,exports){
+},{"flux":159}],380:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46264,7 +46346,7 @@ Router.run(routes, function(Handler) {
 	React.render(React.createElement(Handler, null), document.getElementById('app'));
 });
 
-},{"./routes":378,"react":360,"react-router":190}],378:[function(require,module,exports){
+},{"./routes":381,"react":360,"react-router":190}],381:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -46278,6 +46360,8 @@ var Routes = (
 	React.createElement(Route, {name: "app", path: "/", handler: require('./components/app')}, 
 		React.createElement(DefaultRoute, {handler: require('./components/homePage')}), 
 		React.createElement(Route, {name: "authors", handler: require('./components/authors/authorPage')}), 
+		React.createElement(Route, {name: "overallTeam", handler: require('./components/team/overallTeamPage')}), 
+		React.createElement(Route, {name: "teamBreakdown", handler: require('./components/team/teamBreakdownPage')}), 
 		React.createElement(Route, {name: "addAuthor", path: "author", handler: require('./components/authors/manageAuthorPage')}), 
 		React.createElement(Route, {name: "about", handler: require('./components/about/aboutPage')}), 
 		React.createElement(Route, {name: "manageAuthor", path: "author/:id", handler: require('./components/authors/manageAuthorPage')}), 
@@ -46290,7 +46374,7 @@ var Routes = (
 
 module.exports = Routes;
 
-},{"./components/about/aboutPage":365,"./components/app":366,"./components/authors/authorPage":369,"./components/authors/manageAuthorPage":370,"./components/homePage":373,"./components/notFoundPage":374,"react":360,"react-router":190}],379:[function(require,module,exports){
+},{"./components/about/aboutPage":366,"./components/app":367,"./components/authors/authorPage":370,"./components/authors/manageAuthorPage":371,"./components/homePage":374,"./components/notFoundPage":375,"./components/team/overallTeamPage":376,"./components/team/teamBreakdownPage":377,"react":360,"react-router":190}],382:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
@@ -46336,4 +46420,41 @@ Dispatcher.register(function(action) {
 
 module.exports = AuthorStore;
 
-},{"../api/authorData":364,"../constants/actionTypes":375,"../dispatcher/appDispatcher":376,"events":157,"lodash":163,"object-assign":164}]},{},[377]);
+},{"../api/authorData":364,"../constants/actionTypes":378,"../dispatcher/appDispatcher":379,"events":157,"lodash":163,"object-assign":164}],383:[function(require,module,exports){
+"use strict";
+
+var Dispatcher = require('../dispatcher/appDispatcher');
+var ActionTypes = require('../constants/actionTypes');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var _ = require('lodash');
+
+var _teams = require('../api/teamData').teamData;
+
+var CHANGE_EVENT = 'change';
+
+var TeamStore = assign([], EventEmitter.prototype, {
+	addChangeListener: function(callback) {
+		this.on(CHANGE_EVENT, callback);
+	},
+
+	removeChangeListener: function(callback) {
+		this.removeListener(CHANGE_EVENT, callback);
+	},
+
+	emitChange: function() {
+		this.emit(CHANGE_EVENT);
+	},
+
+	getAllTeamData: function() {
+		return _team;
+	},
+
+	getTeamById: function(id) {
+		return _.find(_teams, {id: id});
+	}
+});
+
+module.exports = TeamStore;
+
+},{"../api/teamData":365,"../constants/actionTypes":378,"../dispatcher/appDispatcher":379,"events":157,"lodash":163,"object-assign":164}]},{},[380]);
