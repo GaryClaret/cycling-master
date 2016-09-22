@@ -16,8 +16,8 @@ var Header = React.createClass({
 						<li><Link to="app">Home</Link></li>
 						<li><Link to="authors">Authors</Link></li>
 						<li><Link to="about">About</Link></li>
-						<li><Link to="overallTeam">Overall Team</Link></li>
-						<li><Link to="teamBreakdown">Team Breakdown</Link></li>
+						<li><Link to="showtimes">Film Showtimes</Link></li>
+						<li><Link to="cyclingTeamPage">Cycling Team</Link></li>
 					</ul>
 				</div>
 			</nav>
@@ -25,4 +25,4 @@ var Header = React.createClass({
 	}
 });
 
-module.exports = Header; 
+module.exports = Header;
