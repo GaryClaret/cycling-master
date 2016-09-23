@@ -48958,7 +48958,7 @@ var Redirect = Router.Redirect;
 
 var Routes = (
 	React.createElement(Route, {name: "app", path: "/", handler: require('./components/app')}, 
-		React.createElement(DefaultRoute, {handler: require('./components/homePage')}), 
+		React.createElement(DefaultRoute, {handler: require('./components/homepage')}), 
 		React.createElement(Route, {name: "authors", handler: require('./components/authors/authorPage')}), 
 		React.createElement(Route, {name: "showtimes", handler: require('./components/film/moviePage')}), 
 		React.createElement(Route, {name: "cyclingTeamPage", handler: require('./components/cycling/cyclingTeamPage')}), 
@@ -48975,7 +48975,7 @@ var Routes = (
 
 module.exports = Routes;
 
-},{"./components/about/aboutPage":372,"./components/app":373,"./components/authors/authorPage":376,"./components/authors/manageAuthorPage":377,"./components/cycling/cyclingTeamPage":381,"./components/film/moviePage":383,"./components/homePage":384,"./components/notFoundPage":385,"./components/team/teamBreakdownPage":386,"react":359,"react-router":189}],393:[function(require,module,exports){
+},{"./components/about/aboutPage":372,"./components/app":373,"./components/authors/authorPage":376,"./components/authors/manageAuthorPage":377,"./components/cycling/cyclingTeamPage":381,"./components/film/moviePage":383,"./components/homepage":384,"./components/notFoundPage":385,"./components/team/teamBreakdownPage":386,"react":359,"react-router":189}],393:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/dispatcher');
